@@ -10,4 +10,5 @@ public interface TecnologiaRepository {
     Mono<Tecnologia> save(Tecnologia tecnologia);
     Mono<Boolean> existsByNombre(String nombre);
     Flux<Tecnologia> findAll(Pageable pageable);
+    Mono<Tecnologia> findById(Integer id);
 }

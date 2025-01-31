@@ -1,5 +1,7 @@
 package co.com.dev.api.reactive.tecnologia.infrastructure.exception;
 
+import co.com.dev.api.reactive.tecnologia.domain.exception.MaximoTecnologiasException;
+import co.com.dev.api.reactive.tecnologia.domain.exception.RelacionExistenteException;
 import co.com.dev.api.reactive.tecnologia.domain.exception.TechnologyAlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.bind.support.WebExchangeBindException;
+import reactor.core.publisher.Mono;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,4 +35,21 @@ public class GlobalExceptionHandler {
         errorResponse.put("error", ex.getMessage());
         return ResponseEntity.badRequest().body(errorResponse);
     }
+
+    @ExceptionHandler(RelacionExistenteException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public Mono<Map<String, String>> handleRelacionExistenteException(RelacionExistenteException ex) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("error", ex.getMessage());
+        return Mono.just(errorResponse);
+    }
+
+    @ExceptionHandler(MaximoTecnologiasException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Mono<Map<String, String>> handleMaximoTecnologiasException(MaximoTecnologiasException ex) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("error", ex.getMessage());
+        return Mono.just(errorResponse);
+    }
 }
+

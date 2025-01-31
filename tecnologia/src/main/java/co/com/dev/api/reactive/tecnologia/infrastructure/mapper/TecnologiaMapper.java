@@ -1,7 +1,7 @@
 package co.com.dev.api.reactive.tecnologia.infrastructure.mapper;
 
 import co.com.dev.api.reactive.tecnologia.domain.model.Tecnologia;
-import co.com.dev.api.reactive.tecnologia.infrastructure.adapter.output.persistence.TecnologiaEntity;
+import co.com.dev.api.reactive.tecnologia.infrastructure.adapter.output.persistence.entity.TecnologiaEntity;
 import co.com.dev.api.reactive.tecnologia.infrastructure.dto.TecnologiaResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
